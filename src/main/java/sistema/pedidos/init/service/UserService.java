@@ -41,13 +41,13 @@ public class UserService {
     }
 
     public LoginResponse login(LoginRequest request) {
-        Optional<User> userOpt = userRepository.findByUsername(request.getUsername());
+        Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
         if (userOpt.isEmpty() || !passwordEncoder.matches(request.getPassword(), userOpt.get().getPassword())) { // Comparar hashs
             throw new RuntimeException("Usuario o contraseña inválidos.");
         }
 
         User user = userOpt.get();
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
-        return new LoginResponse("Inicio de sesión exitoso.", token);
+        return new LoginResponse("Inicio de sesión exitoso.", token, user.getRole().name());
     }
 }
