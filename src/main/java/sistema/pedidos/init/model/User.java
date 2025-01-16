@@ -12,16 +12,7 @@ public class User {
     private String email;
     private Role role;
 
-    public User() {}
-
-    public User(String id, String username, String password, String email, Role role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.role = role;
-    }
-
+    // Getters y Setters
     public String getId() {
         return id;
     }
@@ -62,4 +53,3 @@ public class User {
         this.role = role;
     }
 }
-

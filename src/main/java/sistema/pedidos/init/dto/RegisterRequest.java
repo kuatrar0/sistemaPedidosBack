@@ -1,12 +1,10 @@
 package sistema.pedidos.init.dto;
 
-import sistema.pedidos.init.model.Role;
-
 public class RegisterRequest {
     private String username;
-    private String password;
     private String email;
-    private Role role; // Nuevo campo
+    private String password;
+    private String role;
 
     // Getters y Setters
     public String getUsername() {
@@ -17,14 +15,6 @@ public class RegisterRequest {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -33,11 +23,19 @@ public class RegisterRequest {
         this.email = email;
     }
 
-    public Role getRole() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 }

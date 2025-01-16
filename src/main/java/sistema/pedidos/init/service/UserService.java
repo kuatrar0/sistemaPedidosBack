@@ -34,7 +34,7 @@ public class UserService {
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword())); // Hashear la contraseña
         user.setEmail(request.getEmail());
-        user.setRole(request.getRole() != null ? request.getRole() : Role.COMPRADOR); // Rol por defecto
+        user.setRole(request.getRole() != null ? Role.valueOf(request.getRole()) : Role.COMPRADOR); // Rol por defecto
 
         userRepository.save(user);
         return "Usuario registrado exitosamente.";
@@ -48,6 +48,6 @@ public class UserService {
 
         User user = userOpt.get();
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
-        return new LoginResponse("Inicio de sesión exitoso.", token, user.getRole().name());
+        return new LoginResponse("Inicio de sesión exitoso.", token, user.getRole().name(), user.getId());
     }
 }
