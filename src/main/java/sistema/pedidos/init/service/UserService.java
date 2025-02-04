@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sistema.pedidos.init.security.JwtUtil;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +50,9 @@ public class UserService {
         User user = userOpt.get();
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole().name());
         return new LoginResponse("Inicio de sesión exitoso.", token, user.getRole().name(), user.getId());
+    }
+
+    public List<User> getAllVendedores() {
+        return userRepository.findByRole("VENDEDOR");
     }
 }
